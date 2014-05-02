@@ -18,6 +18,7 @@
 	$sql = "SELECT * FROM `n4d_healthactivity` WHERE `date` = '" . $value["date"] . "' AND `uid`='" . $value['uid'] . "'";
 	$result = $mysqli->query($sql);
 
+	// Insert if no data is found for the date
 	if(!$result->num_rows) {
 		$sql = "INSERT INTO `n4d_healthactivity` VALUES ('" . $value['uid'] . "', '" . $value["date"] . "', '" . $value["heart"] . "', '" . $value["sbp"] . "', '" . 
 				$value["dbp"] . "', '" . $value["sugar"] . "', '" . $value["cholesterol"] . "', '" . $value["sleep"] . "', '" . $value["cardio"] . "', '" .$value["strength"] . "')";

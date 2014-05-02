@@ -14,6 +14,7 @@
 	
 	$day = date('l', time());
 	
+	// if no. of days is 1
 	if($days != 1){
 		$sql="SELECT `date`, " . $type . " FROM `n4d_healthactivity` WHERE `uid` ='" . $uid . "' AND `date` >= '" . $start . "' and `date` <= '" . $end . "' order by date";
 	} else {

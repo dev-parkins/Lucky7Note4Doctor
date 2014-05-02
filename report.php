@@ -43,6 +43,7 @@
 	}
 	$out .= "</table>";
 	
+	// if no. of days is 1
 	if ($days == 1) {
 		$sql = "SELECT * FROM `n4d_healthactivity` WHERE `date` = '" . $start . "' ORDER BY DATE";
 	} else {

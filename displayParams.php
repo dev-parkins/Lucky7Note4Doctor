@@ -12,6 +12,8 @@
 	$mysqli = new MysqliDAO();
 	$day = date('l', time());
 	
+	// Find the average values of each parameter
+	// if today is not sunday
 	if($day != 'Sunday'){
 		$start = date('Y-m-d', strtotime('last sunday'));
 		$end = date('Y-m-d', strtotime('today'));

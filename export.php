@@ -37,6 +37,7 @@
 		echo($rowOutput . PHP_EOL);
 	}
 
+	// Download the file as .csv
 	header('Content-type: application/csv');
 	header('Content-Disposition: attachment; filename=Note4Doctor.csv');
 	

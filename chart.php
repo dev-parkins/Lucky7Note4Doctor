@@ -7,6 +7,7 @@
 	
 	$day = date('l', time());
 	
+	// if today is not sunday
 	if($day != 'Sunday'){
 
 		$start = date('Y-m-d', strtotime('last sunday'));
