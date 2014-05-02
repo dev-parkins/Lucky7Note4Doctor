@@ -1,0 +1,11 @@
+//====================================//
+  Note4Doctor Objects and test scripts
+//====================================//
+
+//--------------Included--------------//
+
+	- Database Objects:
+		-> mysqliDAO.php
+		-> PersonDAO.php
+	- Test Script:
+		-> test.php
