@@ -1,17 +1,26 @@
 <?php
+	/*
+		Author: Christopher Parkins
+		Description: Used to test features during implementation process.  This file includes a checkLogin function
+					 as well as the uplaod_data function used to upload a csv to the database.
+	*/
+	
 	ini_set('display_errors', 'On'); // Allows errors to print to browser/console
 	session_start();
 	session_cache_limiter("public");
 	require_once('mysqliDAO.php'); // required for database connections
-	//echo("START");
+
 	upload_data("0");
-	//echo("<pre>"); print_r($_SESSION);
+
 	
 	checkLogin();
-	//die("END");
 	
 	require_once('PersonDAO.php'); // model used for creating person objects
 	
+	/*
+		Checks the user logging in by grabbing the authorization key and verifying that it exists in the database,
+		and pushing the user's browser to the login page if not found with a $_GET value to change content.
+	*/
 	function checkLogin(){
 		if(isset($_SESSION['authKey'])){
 			$mysqli = new MysqliDAO();
@@ -35,7 +44,12 @@
 			die();
 		}
 	}
-
+	
+	/*
+		Upon selecting the file to upload, the $_FILES array should contain a csv which will be used to push up to the database
+		for the user, requiring certain fields and a certain number of values to successfully upload.  After successful upload,
+		the page will reload with a message indicating that the file was uploaded.
+	*/
 	function upload_data($uid){
 		if (!empty($_FILES) && $_FILES['csv']['size'] > 0) {
 			$mysqli = new MysqliDAO();
@@ -84,6 +98,8 @@
 		} 
 	}
 ?> 
+
+<--Test DIV for the upload csv function->
 
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"> 
 <html xmlns="http://www.w3.org/1999/xhtml"> 

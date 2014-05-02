@@ -1,6 +1,14 @@
 <?php
+	/*
+		Author: Pradeep Mani
+		Editted by: Christopher Parkins
+		Description: This file is used to generate the report for the user by pulling all of the
+					 committed activities and health indicators by the user.  It will then be
+					 sent back to the calling service with a json that will be decoded or used
+					 for other purposes.
+	*/
 	require_once('mysqliDAO.php');
-	//require_once('dbconn.php');
+
 	if(empty($_POST)){
 		die('Empty POST');
 	}

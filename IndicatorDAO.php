@@ -1,4 +1,9 @@
 <?php
+	/*
+		Author: Christopher C Parkins
+		Description: <Unused> This file is used to pull in health indications that are given
+					 by the user and pulled from the n4d_indicators table.
+	*/
 	ini_set('display_errors', 'On'); // Allows errors to print to browser/console
 	indicDAOTest();
 	function indicDAOTest(){
@@ -9,8 +14,8 @@
 	
 	
 /*
-	Activity is the model used for interacting with the 
-	`n4d_activities` table and automatically populates an
+	IndicatorDAO is the model used for interacting with the 
+	`n4d_indicators` table and automatically populates an
 	object if they exist within the database, getting
 	and setting data by querying with a MysqliDAO object
 */
@@ -54,12 +59,14 @@ class IndicatorDAO{
 	}
 	
 	/*
-		dbRetrieve(String $username)
+		dbRetrieve(void)
 		
 		Creates a MySqliDAO and queries the database
 		using the included username as input to determine
 		if a user already exists, retrieving details about
 		that user and returning it.
+		
+		returns Error or output from database
 	*/
 	private function dbRetrieve(){
 		$output = NULL;
@@ -84,7 +91,7 @@ class IndicatorDAO{
 	}
 	
 	/*
-		dbSet(String $username)
+		dbSet(array $array)
 		
 		Used to set the data that is included as input
 		and adds the data to the object if it is a key
@@ -98,6 +105,15 @@ class IndicatorDAO{
 		}
 	}
 	
+	/*
+		newIndicator(array $array)
+		
+		Is used to populate a new entry that will be inserted
+		into the database and must have all fields to
+		successfully be pushed.
+		
+		Returns TRUE or FALSE
+	*/
 	public function newIndicator($array){
 		if(!empty($array) && is_array($array)){
 			$newArray = array();

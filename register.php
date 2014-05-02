@@ -1,4 +1,13 @@
 <?php
+	/*
+		Authors: Kenny Nyugen, Salman Mallick, Christopher Parkins
+		Description: This file is used by the user in order to create a new account
+					 for the Note4Doctor Application.  Contains several fields that
+					 are required, indicating to the user if they are missing.  Will
+					 also check to see if the chosen account name already exists and
+					 then will push the user to the login.php page with an authorization
+					 token
+	*/
 	ini_set("display_errors", "On");
 	session_start();
 	session_cache_limiter("public");
@@ -158,7 +167,7 @@
 					<input type="submit" value="Submit">
 				</form>
 				<?php
-					if(userExists()){
+					if(userExists()){ //If user already exists in database, indicate to the user
 				?>
 					<h4 style="color:red;">THAT USER ACCOUNT ALREADY EXISTS</h4>
 				<?php
@@ -189,6 +198,14 @@
 <html>
 
 <?php
+	/*
+		userExists(void)
+		
+		Checks to see if the value entered by the user for the username field already
+		exists in the database.
+		
+		returns TRUE or FALSE
+	*/
 	function userExists(){
 		if(isset($_POST['username']) AND isset($_POST['pass'])){
 			$mysqli = new MysqliDAO();
@@ -201,6 +218,14 @@
 		return FALSE;
 	}
 	
+	/*
+		createAccount(void)
+		
+		Used to create a new account for the user for the Note4Doctor application and redirects
+		the user upon success
+		
+		No return
+	*/
 	function createAccount(){
 		foreach($_POST as $key => $value){
 			if(empty($value)){
@@ -222,6 +247,12 @@
 		}
 	}
 	
+	/*
+		assignKey(void)
+		
+		Used to generate a random authorization key for the user which will be used to log
+		the session for the user and allow them access into the Note4Doctor application
+	*/
 	function assignKey(){
 		return(base_convert(rand(0, 10000000000000), 36, 16));
 	}

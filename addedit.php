@@ -1,4 +1,10 @@
 <?php
+	/*
+		Author: Pradeep Mani
+		Eddited by: Christopher Parkins
+		Description: Checks to see if the data entered by the user is a duplicate entry and 
+					 adds in a new entry or overrides data for the date provided by the user.
+	*/
 	//ini_set("display_errors", "On");
 	require_once('mysqliDAO.php');
 	

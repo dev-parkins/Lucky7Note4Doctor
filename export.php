@@ -1,4 +1,10 @@
 <?php
+	/*
+		Author: Pradeep Mani
+		Editted by: Christopher Parkins
+		Description: This file is used to export a csv file to the user with values from the database regarding
+					 the user's history that they have commited to the Note4Doctor application
+	*/
 	require_once('mysqliDAO.php');
 
 	if(!isset($_POST['uid'])){

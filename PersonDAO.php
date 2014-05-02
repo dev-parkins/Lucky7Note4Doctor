@@ -1,5 +1,6 @@
 <?php
 /*
+	Author: Christopher Parkins
 	PersonDAO is the model used for interacting with the 
 	`Persons_Test_Table` and automatically populates an
 	object if they exist within the database, getting

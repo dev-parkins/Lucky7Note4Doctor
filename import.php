@@ -1,6 +1,11 @@
 <?php
+	/*
+		Author: Christopher Parkins
+		Description: This file is used to import data that is given by the user
+					 in the form of a csv.
+	*/
 	require_once('mysqliDAO.php');
-	echo("<pre>" . print_r($_FILES, TRUE));
+
 	if(!isset($_FILES)){
 		die("No Data sent");
 	}

@@ -1,4 +1,10 @@
 <?php
+	/*
+		Author: Pradeep Mani
+		Editted by: Christopher Parkins
+		Description: Used to pre-populate the form for the Note4Doctor application if the user
+					 has entered in details previously.
+	*/
 	require_once('mysqliDAO.php');
 
 	if(!isset($_POST)){

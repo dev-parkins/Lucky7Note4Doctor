@@ -1,4 +1,10 @@
 <?php
+	/*
+		Author: Pradeep Mani
+		Editted by: Christopher Parkins
+		Description: This file is used to retrieve the first and last name of the user
+					 using the uid as the search value, returning it to the requestee
+	*/
 	ini_set("display_errors", "On");
 	require_once('mysqliDAO.php');
 

@@ -1,4 +1,10 @@
 <?php
+	/*
+		Author: Christopher Parkins
+		Description: This file is used to serve as an intermediary between the controller and the database in order to 
+					 avoid side effects that could result from directly querying the database.  This object will automatically
+					 populate the values from the database which would be incorporated into a PersonDAO or other location.
+	*/
 	ini_set('display_errors', 'On'); // Allows errors to print to browser/console
 	require_once('mysqliDAO.php'); // required for database connections
 	
@@ -11,7 +17,7 @@
 	
 /*
 	Activity is the model used for interacting with the 
-	`n4d_activities` table and automatically populates an
+	`n4d_healthindicators` table and automatically populates an
 	object if they exist within the database, getting
 	and setting data by querying with a MysqliDAO object
 */
@@ -23,7 +29,7 @@ class HealthActivityDAO{
 	);
 	
 	/*
-		__construct(String $username)
+		__construct(String $uid)
 		
 		Constructs a ActivityDAO using a username
 		that queries the database to create a
@@ -40,7 +46,7 @@ class HealthActivityDAO{
 	}
 	
 	/*
-		activity_getData(String $username)
+		dbRetrieve(String $uid)
 		
 		Creates a MySqliDAO and queries the database
 		using the included username as input to determine
@@ -70,7 +76,7 @@ class HealthActivityDAO{
 	}
 	
 	/*
-		person_setData(String $username)
+		dbSet(array $array)
 		
 		Used to set the data that is included as input
 		and adds the data to the object if it is a key
@@ -83,7 +89,12 @@ class HealthActivityDAO{
 			}
 		}
 	}
-	
+	/*
+		getActivities(void)
+		
+		Returns the activities array to the requestee in case
+		they would rather work with the data directly.
+	*/
 	public function getActivities(){
 		return $this->activities;
 	}

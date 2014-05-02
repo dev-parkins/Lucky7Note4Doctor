@@ -1,4 +1,10 @@
 <?php
+	/*
+		Authors: Kenny Nyugen, Salman Mallick, Christopher Parkins
+		Description: This file is used as the main part of the Note4Doctor Application
+					 that contains the HTML that will be displayed to the user as well
+					 as the verification process in order to access content.
+	*/
 	ini_set('display_errors', 'On'); // Allows errors to print to browser/console
 	session_start();
 	session_cache_limiter("public");

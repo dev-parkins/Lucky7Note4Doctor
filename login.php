@@ -1,4 +1,12 @@
 <?php
+	/*
+		Authors: Kenny Nyugen, Salman Mallick, Christopher Parkins
+		Description: This file is used to login to the Note4Doctor application
+					 Contains several functions in order to authorize the user
+					 by giving an auth token that will be verified after logging
+					 in as well as to save the session for the user (avoiding
+					 a login when leaving the page or closing the browser)
+	*/
 	ini_set("display_errors", "On");
 	session_start();
 	session_cache_limiter("public");
@@ -158,11 +166,11 @@
 			<div>OR <a href="https://graduate-dev.asu.edu/sites/all/modules/playgroundmodule/Test/register.php">REGISTER</a></div>
 <?php
 	if(!$valid){
-		if(isset($_GET['redirect']) && $_GET['redirect'] == 'true'){
+		if(isset($_GET['redirect']) && $_GET['redirect'] == 'true'){ //If the user never was authorized from the index.php page, this will indicate to the user
 ?>
 			<h4 style="color:red">You will need to login in order to view Note4Doctor content</h4>
 <?php
-		} elseif(isset($_POST['username']) || isset($_POST['password'])){
+		} elseif(isset($_POST['username']) || isset($_POST['password'])){ // If bad password or username, then this will indicate that to the user
 ?>
 			<h4 style="color:red">Invalid Username or Password</h4>
 <?php
@@ -190,6 +198,14 @@
 
 
 <?php
+	/*
+		validAuthKey(void)
+		
+		This functino is used to determine if the session variable's authKey is valid and current, else it
+		will unset the variable and return FALSE
+		
+		returns TRUE or FALSE
+	*/
 	function validAuthKey(){
 		if(isset($_SESSION['authKey'])){
 			$mysqli = new MysqliDAO();
@@ -207,6 +223,14 @@
 		}
 	}
 	
+	/*
+		validCredentials(void)
+		
+		This function is used to verifify the username and password and set a new session variable for the user in order
+		to access the Note4Doctor application upon redirect
+		
+		returns FALSE or redirects
+	*/
 	function validCredentials(){
 		if(isset($_POST['username']) && isset($_POST['pass'])){
 			$mysqli = new MysqliDAO();
@@ -229,6 +253,11 @@
 		return FALSE;
 	}
 	
+	/*
+		assignKey(void)
+		
+		This function is used to generate an authorization key for the user for login purposes.
+	*/
 	function assignKey(){
 		return(base_convert(rand(0, 10000000000000), 36, 16));
 	}

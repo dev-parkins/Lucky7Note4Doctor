@@ -1,4 +1,12 @@
 <?php
+	/*
+		Author: Christopher Parkins
+		Description: This file is used to create a database object that will contain
+					 information about the user including weight, height, age, etc.
+					 This file is currently unused, but is meant to serve as an
+					 intermediary between the controller and database in order to avoid
+					 unnecessary side effects.
+	*/
 	ini_set('display_errors', 'On'); // Allows errors to print to browser/console
 	require_once('mysqliDAO.php'); // required for database connections
 	
@@ -10,7 +18,7 @@
 	
 	
 /*
-	Activity is the model used for interacting with the 
+	ProfileDAO is the model used for interacting with the 
 	`n4d_profile` table and automatically populates an
 	object if they exist within the database, getting
 	and setting data by querying with a MysqliDAO object
@@ -40,7 +48,7 @@ class ProfileDAO{
 	}
 	
 	/*
-		profile_getData(String $username)
+		dbRetrieve(String $uid)
 		
 		Creates a MySqliDAO and queries the database
 		using the included username as input to determine
@@ -70,7 +78,7 @@ class ProfileDAO{
 	}
 	
 	/*
-		person_setData(String $username)
+		dbSet(array $array)
 		
 		Used to set the data that is included as input
 		and adds the data to the object if it is a key
@@ -84,6 +92,13 @@ class ProfileDAO{
 		}
 	}
 	
+	/*
+		getActivities(void)
+		
+		Returns the contains values in the object that will be given
+		as an array to the requestee if they wish to manage the data
+		directly
+	*/
 	public function getActivities(){
 		return $this->activities;
 	}
