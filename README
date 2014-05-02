@@ -1,5 +1,5 @@
 //====================================//
-  Note4Doctor Objects and test scripts
+			Note4Doctor Files
 //====================================//
 
 //--------------Included--------------//
@@ -7,5 +7,24 @@
 	- Database Objects:
 		-> mysqliDAO.php
 		-> PersonDAO.php
+		-> IndicatorDAO.php
+		-> healthactivityDAO.php
+		-> Profile.php
 	- Test Script:
 		-> test.php
+		-> dbconn.php
+		-> secure-verify.php
+	- Web Service Scripts:
+		-> addedit.php
+		-> chart.php
+		-> displayParams.php
+		-> export.php
+		-> import.php
+		-> report.php
+		-> reportChart.php
+		-> user.php
+	- User Viewable Content:
+		-> index.php
+		-> login.php
+		-> logout.php
+		-> register.php
