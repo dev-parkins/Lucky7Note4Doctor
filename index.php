@@ -45,6 +45,7 @@
 	<script src="js/highcharts.js"></script>
 	<script src="js/exporting.js"></script>
 	<script type="text/javascript" src="n4d.js"></script>
+	<!--Below are the CSS settings for each of the panes used-->
 	<style>
 		#FullPane {
 			width: 1000px;
@@ -145,21 +146,27 @@
 		}
 	</style>
 </head>
+<!--The background color is set to light gray by default, the same as the default color for all the panes except the title-->
 <body style = "background-color:#D0D0D0;" onload = "RevertLeftPane()">
 
 <div id = "FullPane">
+	<!--This contains the title in the uppermost box of the web application-->
 	<div id = "TopPane">
 			<h2> Lucky7's Note4Doctor (Time Stamp: April 29th) </h2>
 	</div>
+	<!--This is the rest of the web application, which contains both the left and right side of the web application-->
 	<div id="MiddlePane">
 		<div id="user" style="display:none"><?php if(isset($_SESSION['userId'])){ print($_SESSION['userId']); }?></div>
 		<div id="UserPane"></div>
+		<!--This is the left side of the middle pane, which has the buttons, health meter, and activities respectively from top to bottom-->
 		<div id = "LeftPane">
+			<!--This div contains the buttons for Add/Edit, View/Print, and Load/Save-->
 			<div id = "ButtonsPane">
 				<button id = "btnAddEdit" onclick = 'AddEditForm()' style = 'width:120px'> Add / Edit </button>
 				<button id = "btnViewPrint" onclick = 'ViewPrintForm()' style = 'width:120px'> View / Print </button>
 				<button id = "btnLoadSave" onclick = 'LoadSaveForm()' style = 'width:120px'> Load / Save </button>
 			</div>
+			<!--When the Add/Edit button is pressed, this pane is loaded with the data from the database-->
 			<div id = "AddEditPane" style = "display: none; position: relative;">
 				<div style="text-align: center;"><h3>Add/Edit Pane</h3></div>
 				<form action="javascript:void(0);" name="add" onsubmit="submitAddEdit()">
@@ -209,6 +216,7 @@
 				</form>
 				<button onclick = "RevertLeftPane('add')" style="bottom: 0; left: 200px; position: absolute;"> Cancel </button>
 			</div>
+			<!--When the View/Print button is pressed, this pane is loaded with a button to generate the report-->
 			<div id = "ViewPrintPane" style = "display: none; position: relative;">
 				<div style="text-align: center;"><h3>View/Print Pane</h3></div>
 				<form action="javascript:void(0);" name="add" onsubmit="generateReport()">
@@ -228,6 +236,7 @@
 				</form>
 				<button onclick = "RevertLeftPane('view')" style="bottom: 0; left: 200px; position: absolute;"> Back </button>
 			</div>
+			<!--When the Load/Save button is pressed, this pane is loaded with a button to save the data from the database into a flat file or load it from the user's computer-->
 			<div id = "LoadSavePane" style = "display: none; position: relative;">
 				<div style="text-align: center;"><h3>Load/Save Pane</h3></div>
 				<form method="post" name="backup" action="https://graduate-dev.asu.edu/sites/all/modules/playgroundmodule/Test/export.php">
@@ -243,23 +252,28 @@
 						<input type="submit" name="Submit" value="Submit" />
 					</form>
 				</div></center>
-			</div>		
+			</div>
+			<!--This is the top of the left pane, which displays the health meter parameters-->
 			<div id = "HealthMeterPane" style = "height: 287px; width: 397px; overflow: auto; border-style: solid; border-width: 0px 0px 2px;">
 				<div style="text-align: center;"><h3>Health Meter</h3></div>
 			</div>
+			<!--This is the bottom of the right pane, which displays the activity parameters (example: sleeping)-->
 			<div id = "ActivityPane">
 				<div style="text-align: center;"><h3>Activities Meter</h3></div>
 			</div>
 		</div>
+		<!--This is the right side of the middle pane, which has the graphs-->
 		<div id = "RightPane">
 			<div id="container1" style="height: 290px; margin: 0 auto; padding:5px"></div>
 			<div id="container2" style="height: 290px; margin: 0 auto; padding:5px"></div>
 			
 		</div>
-				<div id = "CustomizationPane" style="text-align: center;">
+			<!--This is made visible when the cog is pressed and has the 4 drop down menus for customizing the layout of the web application-->
+			<div id = "CustomizationPane" style="text-align: center;">
 			<p> Customization</p>
 			<p> Instructions: Select which pane you want to edit followed by the color, font, and font size.</p>
 			<p> Notes: Add / Edit, View / Print, and Load / Save uses the same pane. Changing one changes all of them. </p>
+			<!--This allows the user to select which pane to customize-->
 			<select id = "WhichPane">
 				<option value = "ActivityPane"> Activities Meter </option>
 				<option value = "LeftPane"> Add / Edit </option>
@@ -271,6 +285,7 @@
 				<option value = "TopPane"> Title </option>
 				<option value = "LeftPane"> View / Print </option>
 			</select>
+			<!--This allows the user to select which background color to change the selected pane to-->
 			<select id = "WhichColor">
 				<option value = "Default"> Default </option>
 				<option value = "#66CCFF"> Blue </option>
@@ -282,6 +297,7 @@
 				<option value = "#6666CC"> Purple </option>
 				<option value = "#A00000"> Red </option>
 			</select>
+			<!--This allows the user to select which font to change the selected pane to-->
 			<select id = "WhichFont">
 				<option value = "Default"> Default </option>
 				<option value = "Arial"> Arial </option>
@@ -292,6 +308,7 @@
 				<option value = "Tahoma"> Tahoma </option>
 				<option value = "Verdana"> Verdana </option>
 			</select>
+			<!--This allows the user to select which font size to change the selected pane to-->
 			<select id = "WhichSize">
 				<option value = "Default"> Default </option>
 				<option value = "8px"> 8pt </option>
@@ -305,10 +322,12 @@
 				<option value = "20px"> 20pt </option>
 				<option value = "22px"> 22pt </option>
 			</select>
+			<!--The first button applies the customization while the second button hides the customization pane-->
 			<button onclick = "ChangeColorFont()" style = "width:130px"> Change </button>
 			<button onclick = "RevertLeftPane('customize')"> Return </button>
 		</div>
 	</div>
+	<!--This last pane is under the middle pane, but is not actually visible. It has a button which returns the user to the home page, or logs out. It also has the cog for customization-->
 	<div id="BottomPane">
 		<a href="https://graduate-dev.asu.edu/sites/all/modules/playgroundmodule/Test/index.php">
 			<button type="button" style="position:relative; left:420px"> Return to Home Page </button>
